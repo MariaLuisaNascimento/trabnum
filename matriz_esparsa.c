@@ -215,6 +215,7 @@ MATRIZ_ESPARSA  *multiplicar_matriz( MATRIZ_ESPARSA *m1, MATRIZ_ESPARSA *m2){
 		return produto;		
 		
 	}else return NULL;
+}
 		
 
 MATRIZ_ESPARSA *ler_matriz(char name[20]){
@@ -250,7 +251,7 @@ MATRIZ_ESPARSA *ler_matriz(char name[20]){
        }
     }
 }*/
-}
+
 
 
 
