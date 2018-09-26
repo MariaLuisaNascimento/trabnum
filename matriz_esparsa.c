@@ -207,7 +207,7 @@ MATRIZ_ESPARSA *ler_matriz(char name[20]){
         for (j = 0; j < y; j++){
 
             fscanf(file , " %lf ", &aux);
-            printf("%d %d %d \n", i, j, aux);            
+            printf("%d %d %lf \n", i, j, aux);            
             set_matriz ( matriz, (i+1), (j+1), aux);
         }
     }
