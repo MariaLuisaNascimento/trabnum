@@ -82,7 +82,6 @@ int main(){
 			}
 		}
 		erro = auxiliar1-auxiliar2;
-		printf("%lf\n", erro);
 		k++;
 	}
 	printf("Vetor final: \n\n");
