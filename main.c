@@ -14,7 +14,7 @@ int* cria_vetor(MATRIZ_ESPARSA* matriz,int linha, int tamanho){
 
 int main(){
 
-	int tamanho = 6;
+	int tamanho = 200;
 	int itmax = 12;
 	int i;
 	MATRIZ_ESPARSA *matriz;
@@ -47,26 +47,25 @@ int main(){
 	printf("\n\n");
 
 	int j;
-	for(int k = 0; k  < 10; k++){
-		printf("\nk = %d  \n", k);
+	for(int k = 0; k  < 86; k++){
+		//printf("\nk = %d ", k);
 		for(i = 1; i <= tamanho; i++){
-			for(int l = 0; l < tamanho; l++){
+			/*for(int l = 0; l < tamanho; l++){
 				printf("%lf ", vetor_x[l]);
 			}
-			printf("\n");
+			printf("\n");*/
 			vetor_x[i-1] = (vetor_b[i-1]/get_matriz(matriz,i,i));
 			for(int j = 1; j <= tamanho; j++){
 				//printf("j = %d %.3f ", j, vetor_x[j-i]);
 				if(i!= j){
-					vetor_x[i-1] -= (vetor_x[j-1]/get_matriz(matriz,i,i));
-
+					vetor_x[i-1] -= (get_matriz(matriz, i, j)*vetor_x[j-1]/get_matriz(matriz,i,i));
 				}
 			}
 			//printf("\n\ni = %d -> %.6f  ", i, vetor_x[i-1]);
 		}
-		printf("\n\nVetor x final\n");
+		//printf("\nVetor x final\n");
 		for(int l = 0; l < tamanho; l++){
-		printf("%lf ", vetor_x[l]);
+		printf("%.2lf ", vetor_x[l]);
 		}
 	}
 
