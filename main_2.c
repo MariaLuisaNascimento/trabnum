@@ -21,7 +21,7 @@ double modulo(double numero){
 
 int main(){
 
-	int tamanho = 6 ;
+	int tamanho = 500 ;
 	int itmax = 2*tamanho;
 	int i;
 	double e = 0.0000000001;
@@ -35,7 +35,7 @@ int main(){
 		set_matriz(matriz,i+3,i,-1); 
 	}
 
-	float vetor_b[tamanho];
+	double vetor_b[tamanho];
 	//printf("Vetor b\n");
 	for(int j = 1; j <= tamanho; j++){
 		vetor_b[j-1] = (double)(1.0/j);
@@ -59,10 +59,10 @@ int main(){
 	double auxiliar2;
 
 	while(k < itmax && erro > e){
-		for(i = 1; i <= tamanho; i++){
-			for(int p = 0; p < tamanho; p++){
+		for(int p = 0; p < tamanho; p++){
 				vetor_aux[p] = vetor_x[p];
-			}
+		}
+		for(i = 1; i <= tamanho; i++){
 			vetor_x[i-1] = (vetor_b[i-1]/get_matriz(matriz,i,i));
 			for(int j = 1; j <= tamanho; j++){
 				if(i!= j){
@@ -73,20 +73,46 @@ int main(){
 		auxiliar2 = vetor_aux[0];
 		auxiliar1 = vetor_x[0];
 		for(int r = 0; r < tamanho; r++){
-			//Inverti aqui pelo primeiro elemento ser sempre o maior.
-			if(modulo(vetor_aux[r]) < auxiliar2){
+			if(modulo(vetor_aux[r]) > auxiliar2){
 				auxiliar2 = modulo(vetor_aux[r]);
 			}
-			if(modulo(vetor_x[r]) < auxiliar1){
+			if(modulo(vetor_x[r]) > auxiliar1){
 				auxiliar1 = modulo(vetor_x[r]);
 			}
 		}
 		erro = auxiliar1-auxiliar2;
+		printf(" erro: %.10lf\n", erro);
 		k++;
+	
 	}
+	/*
 	printf("Vetor final: \n\n");
 	for(int l = 0; l < tamanho; l++){
 		printf("%.2lf ", vetor_x[l]);
 	}
 	printf("\n");
+	*/
+
+	double vetor_aux2[tamanho];
+	for(int o = 0; o < tamanho; o++){
+		vetor_aux2[o] = 0.0;
+		for(int p = 1; p <= tamanho; p++){
+			//printf("%.10lf, %.10lf \n", vetor_x[p-1], get_matriz(matriz, o+1, p));
+			vetor_aux2[o] += get_matriz(matriz,o+1, p) * vetor_x[p-1];
+		}
+		//printf("%.10lf", vetor_aux2[o]);
+	}
+	
+
+	double r[tamanho], auxiliar3 = 0;
+	for(int l = 0; l < tamanho; l++){
+		r[l] = vetor_b[l] - vetor_aux2[l];
+		printf("r%d:%.10lf \n",l, r[l]);
+		if(modulo(r[l]) > auxiliar3){
+				auxiliar3 = modulo(r[l]);
+		}
+	}
+
+	printf("%.15lf", auxiliar3);
+
 }

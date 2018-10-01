@@ -62,10 +62,10 @@ int main(){
 	double auxiliar2;
 
 	while((k < itmax) && (erro > e)){
+		for(int p = 0; p < tamanho; p++){
+			vetor_aux[p] = vetor_x[p];
+		}
 		for(i = 1; i <= tamanho; i++){
-			for(int p = 0; p < tamanho; p++){
-				vetor_aux[p] = vetor_x[p];
-			}
 			vetor_x[i-1] = (vetor_b[i-1]/get_matriz(matriz,i,i));
 			for(int j = 1; j <= tamanho; j++){
 				if(i!= j){
@@ -86,6 +86,8 @@ int main(){
 		erro = auxiliar1 - auxiliar2;
 		k++;
 	}
+
+	printf("Erro final: %.10lf\n", erro);
 	printf("Vetor final: \n\n");
 	for(int l = 0; l < tamanho; l++){
 		printf("%.2lf ", vetor_x[l]);
