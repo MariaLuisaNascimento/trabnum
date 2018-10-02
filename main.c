@@ -12,14 +12,16 @@ double modulo(double numero){
 
 int main(){
 	//Variáveis que armazenam o tamanho do vetor e o número máximo de iterações
-	int tamanho = 100;
+	int tamanho = 200;
 	int itmax = 2*tamanho;
+
 	//Erro Epsilon = 10^(-10)
 	double e = 0.0000000001;
 
 	MATRIZ_ESPARSA *matriz;
 	//Cria a matriz utilizando a função feita na biblioteca matriz_esparsa.c
 	matriz = criar_matriz(tamanho,tamanho);
+
 	int i;
 	//Seta a matriz como indicado no enunciado
 	for(i=1; i<= tamanho; i++){
@@ -75,13 +77,13 @@ int main(){
 		//Cálculo ||x(k=1)-x(k)||
 		for(int r = 0; r < tamanho; r++){
 			if(modulo(vetor_aux[r]) > auxiliar2){
-				auxiliar2 = modulo(vetor_aux[r]);
+				auxiliar2 = vetor_aux[r];
 			}
 			if(modulo(vetor_x[r]) > auxiliar1){
-				auxiliar1 = modulo(vetor_x[r]);
+				auxiliar1 = vetor_x[r];
 			}
 		}
-		erro = auxiliar1 - auxiliar2;
+		erro = modulo(auxiliar1 - auxiliar2);
 		k++;
 	}
 	//Imprime o erro final, o número de iterações e o vetor final x
