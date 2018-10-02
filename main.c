@@ -1,16 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "matriz_esparsa.h"
-/*
-int* cria_vetor(MATRIZ_ESPARSA* matriz,int linha, int tamanho){
-		float vetor_b[tamanho];
-		for(int j = 1; j <= tamanho; j++){
-			vetor_b[j-1] = get_matriz(matriz,j,j);
-			printf("%.1f ", vetor_b[j-1]);
-		}
-		printf("\n\n");
-	}
-	*/
 
 double modulo(double numero){
 	if(numero < 0){
@@ -87,7 +77,7 @@ int main(){
 		k++;
 	}
 
-	printf("Erro final: %.10lf\n", erro);
+	printf("Erro final: %.10lf\nNúmero de iterações: %d\n", erro, k);
 	printf("Vetor final: \n\n");
 	for(int l = 0; l < tamanho; l++){
 		printf("%.2lf ", vetor_x[l]);
